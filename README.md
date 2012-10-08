@@ -1,7 +1,7 @@
 ## StaticSaver
 
 StaticSaver is a plugin for MODx Revolution that automatically sets up the name of file and media 
-resource of element (template, chunk, snippet, TV or plugin) when wanting 
+source of element (template, chunk, snippet, TV or plugin) when wanting 
 to make this element be static.
 
 ## Configuration
