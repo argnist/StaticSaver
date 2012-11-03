@@ -1,5 +1,9 @@
 Changelog for StaticSaver.
 
+StaticSaver 1.0.0-pl
+==============
+- Set file name on form create. It prevents rewriting files of copied elements.
+
 StaticSaver 1.0.0-rc1
 ==============
 - Plugin automatically sets up the name of file and media resource of an element (template, chunk, snippet, TV or plugin) when wanting to make this element be static

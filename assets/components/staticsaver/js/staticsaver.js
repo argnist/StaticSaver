@@ -6,6 +6,14 @@ var StaticSaver = function(config) {
         if (!(nameInput && staticFile && sourceInput)) {
             return;
         }
+        
+        var setValue = function(placeholder, value) {
+            if (MODx.config['staticsaver.static_file_extension'] !== '') {
+                placeholder.setValue(value + '.' + MODx.config['staticsaver.static_file_extension']);
+            }
+        }
+        
+        setValue(staticFile, nameInput.getAttribute('value'));
         var sourceStore = sourceInput.getStore();  
         var sources = [];
         sourceStore.load({
@@ -20,10 +28,8 @@ var StaticSaver = function(config) {
                 });
             }
         });
-        nameInput.on('keyup', function(){
-            if (MODx.config['staticsaver.static_file_extension'] !== '') {
-                staticFile.setValue(this.getAttribute('value') + '.' + MODx.config['staticsaver.static_file_extension']);
-            }
+        nameInput.on('keyup', function() {
+            setValue(staticFile, nameInput.getAttribute('value'));
         });
     });
 };
