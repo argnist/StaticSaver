@@ -7,18 +7,66 @@
  */
 $settings = array();
 
+$settings['static_file_extension']= $modx->newObject('modSystemSetting');
+$settings['static_file_extension']->fromArray(array(
+    'key' => 'staticsaver.static_file_extension',
+    'value' => 'php',
+    'xtype' => 'textfield',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
 
-$settings[0]= $modx->newObject('modSystemSetting');
-$settings[0]->fromArray(array(
-	'key' => 'staticsaver.static_file_extension',
+$settings['static_chunk_file_extension']= $modx->newObject('modSystemSetting');
+$settings['static_chunk_file_extension']->fromArray(array(
+	'key' => 'staticsaver.static_chunk_file_extension',
 	'value' => 'php',
 	'xtype' => 'textfield',
 	'namespace' => 'staticsaver',
 	'area' => 'file',
 ),'',true,true);
 
-$settings[1]= $modx->newObject('modSystemSetting');
-$settings[1]->fromArray(array(
+$settings['static_snippet_file_extension']= $modx->newObject('modSystemSetting');
+$settings['static_snippet_file_extension']->fromArray(array(
+    'key' => 'staticsaver.static_snippet_file_extension',
+    'value' => 'php',
+    'xtype' => 'textfield',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
+
+
+$settings['static_plugin_file_extension']= $modx->newObject('modSystemSetting');
+$settings['static_plugin_file_extension']->fromArray(array(
+    'key' => 'staticsaver.static_plugin_file_extension',
+    'value' => 'php',
+    'xtype' => 'textfield',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
+
+
+$settings['static_template_file_extension']= $modx->newObject('modSystemSetting');
+$settings['static_template_file_extension']->fromArray(array(
+    'key' => 'staticsaver.static_template_file_extension',
+    'value' => 'php',
+    'xtype' => 'textfield',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
+
+
+$settings['static_tv_file_extension']= $modx->newObject('modSystemSetting');
+$settings['static_tv_file_extension']->fromArray(array(
+    'key' => 'staticsaver.static_tv_file_extension',
+    'value' => 'php',
+    'xtype' => 'textfield',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
+
+
+$settings['static_plugin_media_source']= $modx->newObject('modSystemSetting');
+$settings['static_plugin_media_source']->fromArray(array(
 	'key' => 'staticsaver.static_plugin_media_source',
 	'value' => '1',
 	'xtype' => 'modx-combo-source',
@@ -26,8 +74,8 @@ $settings[1]->fromArray(array(
 	'area' => 'file',
 ),'',true,true);
 
-$settings[2]= $modx->newObject('modSystemSetting');
-$settings[2]->fromArray(array(
+$settings['static_snippet_media_source']= $modx->newObject('modSystemSetting');
+$settings['static_snippet_media_source']->fromArray(array(
 	'key' => 'staticsaver.static_snippet_media_source',
 	'value' => '1',
 	'xtype' => 'modx-combo-source',
@@ -35,8 +83,8 @@ $settings[2]->fromArray(array(
 	'area' => 'file',
 ),'',true,true);
 
-$settings[3]= $modx->newObject('modSystemSetting');
-$settings[3]->fromArray(array(
+$settings['static_template_media_source']= $modx->newObject('modSystemSetting');
+$settings['static_template_media_source']->fromArray(array(
 	'key' => 'staticsaver.static_template_media_source',
 	'value' => '1',
 	'xtype' => 'modx-combo-source',
@@ -44,8 +92,8 @@ $settings[3]->fromArray(array(
 	'area' => 'file',
 ),'',true,true);
 
-$settings[4]= $modx->newObject('modSystemSetting');
-$settings[4]->fromArray(array(
+$settings['static_tv_media_source']= $modx->newObject('modSystemSetting');
+$settings['static_tv_media_source']->fromArray(array(
 	'key' => 'staticsaver.static_tv_media_source',
 	'value' => '1',
 	'xtype' => 'modx-combo-source',
@@ -53,8 +101,8 @@ $settings[4]->fromArray(array(
 	'area' => 'file',
 ),'',true,true);
 
-$settings[5]= $modx->newObject('modSystemSetting');
-$settings[5]->fromArray(array(
+$settings['static_chunk_media_source']= $modx->newObject('modSystemSetting');
+$settings['static_chunk_media_source']->fromArray(array(
 	'key' => 'staticsaver.static_chunk_media_source',
 	'value' => '1',
 	'xtype' => 'modx-combo-source',
@@ -62,5 +110,22 @@ $settings[5]->fromArray(array(
 	'area' => 'file',
 ),'',true,true);
 
+$settings['static_default']= $modx->newObject('modSystemSetting');
+$settings['static_default']->fromArray(array(
+    'key' => 'staticsaver.static_default',
+    'value' => '0',
+    'xtype' => 'combo-boolean',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
+
+$settings['include_category']= $modx->newObject('modSystemSetting');
+$settings['include_category']->fromArray(array(
+    'key' => 'staticsaver.include_category',
+    'value' => '0',
+    'xtype' => 'combo-boolean',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
 
 return $settings;

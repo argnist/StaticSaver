@@ -1,5 +1,13 @@
 Changelog for StaticSaver.
 
+StaticSaver 1.1.0-pl
+==============
+- Adds file extension system settings for each type of elements;
+- Set elements to be static by default;
+- The name of file can be edited manually;
+- Category name can be a folder of a file.
+
+
 StaticSaver 1.0.0-pl
 ==============
 - Set file name on form create. It prevents rewriting files of copied elements.
