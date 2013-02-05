@@ -1,5 +1,9 @@
 Changelog for StaticSaver.
 
+StaticSaver 1.1.1-pl
+==============
+- Some minor performance fixes.
+
 StaticSaver 1.1.0-pl
 ==============
 - Adds file extension system settings for each type of elements;

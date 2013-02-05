@@ -10,7 +10,7 @@ $settings = array();
 $settings['static_file_extension']= $modx->newObject('modSystemSetting');
 $settings['static_file_extension']->fromArray(array(
     'key' => 'staticsaver.static_file_extension',
-    'value' => 'php',
+    'value' => '',
     'xtype' => 'textfield',
     'namespace' => 'staticsaver',
     'area' => 'file',

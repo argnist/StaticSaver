@@ -89,5 +89,5 @@ if ($config)
 {
     $json_config = json_encode($config);
     $modx->regClientStartupScript('<script src="' . $modx->getOption('assets_url') . 'components/staticsaver/js/staticsaver.js"></script>');
-    $modx->regClientStartupScript('<script>StaticSaver = new StaticSaver(' . $json_config . ')</script>');
+    $modx->regClientStartupScript('<script>StaticSaver = new StaticSaver(' . $json_config . ');</script>', true);
 }

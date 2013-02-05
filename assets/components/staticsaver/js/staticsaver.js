@@ -30,12 +30,17 @@ var StaticSaver = function(config) {
                     new_value =  category + '/' + new_value;
                 }
             }
+            placeholder.setValue(new_value);
+        }
 
+        if (staticFile.getValue() == '') {
+            setValue(staticFile, nameInput.getAttribute('value'));
+        } else {
             Ext.Ajax.request({
                 url:  MODx.config['assets_url'] + 'components/staticsaver/connector.php',
                 success: function(e){
                     if (e.responseText == '1') {
-                        placeholder.setValue(new_value);
+                        setValue(staticFile, nameInput.getAttribute('value'));
                     }
                 },
                 params: {
@@ -43,26 +48,29 @@ var StaticSaver = function(config) {
                     type : config.type,
                     id: MODx.request.id,
                     source: sourceInput.getValue(),
-                    static_file: placeholder.getValue()
+                    static_file: staticFile.getValue()
                 }
             });
         }
-        
-        setValue(staticFile, nameInput.getAttribute('value'));
-        var sourceStore = sourceInput.getStore();  
-        var sources = [];
-        sourceStore.load({
-            callback: function(r) {
-                Ext.each(r, function(item, index) {
-                    sources.push(item.data.id);
-                    if (item.data.id == config.source) {
-                        sourceInput.setValue(config.source);
-                        return false;
-                    }
-                    return true;
-                });
-            }
-        });
+
+
+        if (sourceInput.getValue() != config.source) {
+            var sourceStore = sourceInput.getStore();
+            var sources = [];
+            sourceStore.load({
+                callback: function(r) {
+                    Ext.each(r, function(item, index) {
+                        sources.push(item.data.id);
+                        if (item.data.id == config.source) {
+                            sourceInput.setValue(config.source);
+                            return false;
+                        }
+                        return true;
+                    });
+                }
+            });
+        }
+
         nameInput.on('keyup', function() {
             setValue(staticFile, nameInput.getAttribute('value'));
         });
