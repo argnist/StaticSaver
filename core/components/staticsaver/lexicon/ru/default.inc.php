@@ -5,6 +5,7 @@
  * @package staticsaver
  * @subpackage lexicon
  */
+$_lang['setting_staticsaver.enable_rewrite'] = 'Перезапись названия файла при изменении названия элемента';
 $_lang['setting_staticsaver.static_file_extension'] = 'Расширение статических файлов';
 $_lang['setting_staticsaver.static_chunk_file_extension'] = 'Расширение статических файлов чанков';
 $_lang['setting_staticsaver.static_template_file_extension'] = 'Расширение статических файлов шаблонов';

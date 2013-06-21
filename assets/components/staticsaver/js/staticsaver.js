@@ -39,7 +39,7 @@ var StaticSaver = function(config) {
             Ext.Ajax.request({
                 url:  MODx.config['assets_url'] + 'components/staticsaver/connector.php',
                 success: function(e){
-                    if (e.responseText == '1') {
+                    if (MODx.config['staticsaver.enable_rewrite'] == 1 || e.responseText == '1') {
                         setValue(staticFile, nameInput.getAttribute('value'));
                     }
                 },

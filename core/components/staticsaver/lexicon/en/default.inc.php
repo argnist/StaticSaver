@@ -5,6 +5,7 @@
  * @package staticsaver
  * @subpackage lexicon
  */
+$_lang['setting_staticsaver.enable_rewrite'] = 'Rewrite file name on change element name';
 $_lang['setting_staticsaver.static_file_extension'] = 'Static files extension';
 $_lang['setting_staticsaver.static_chunk_file_extension'] = 'Static chunk files extension';
 $_lang['setting_staticsaver.static_template_file_extension'] = 'Static template files extension';
