@@ -27,7 +27,7 @@ var StaticSaver = function(config) {
             if (MODx.config['staticsaver.include_category']) {
                 var category = categoryInput.getRawValue();
                 if (category != categoryInput.getValue()) {
-                    new_value =  category + '/' + new_value;
+                    new_value =  category.toLowerCase().replace(/ /g,"_") + '/' + new_value;
                 }
             }
             placeholder.setValue(new_value);
