@@ -7,6 +7,15 @@
  */
 $settings = array();
 
+$settings['static_enable_rewrite']= $modx->newObject('modSystemSetting');
+$settings['static_enable_rewrite']->fromArray(array(
+    'key' => 'staticsaver.enable_rewrite',
+    'value' => '0',
+    'xtype' => 'textfield',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
+
 $settings['static_file_extension']= $modx->newObject('modSystemSetting');
 $settings['static_file_extension']->fromArray(array(
     'key' => 'staticsaver.static_file_extension',
