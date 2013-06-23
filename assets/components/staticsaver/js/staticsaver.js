@@ -27,7 +27,7 @@ var StaticSaver = function(config) {
             if (MODx.config['staticsaver.include_category']) {
                 var category = categoryInput.getRawValue();
                 if (category != categoryInput.getValue()) {
-                    new_value =  category + '/' + new_value;
+                    new_value =  category.toLowerCase().replace(/ /g,"_") + '/' + new_value;
                 }
             }
             placeholder.setValue(new_value);
@@ -39,7 +39,7 @@ var StaticSaver = function(config) {
             Ext.Ajax.request({
                 url:  MODx.config['assets_url'] + 'components/staticsaver/connector.php',
                 success: function(e){
-                    if (e.responseText == '1') {
+                    if (MODx.config['staticsaver.enable_rewrite'] == 1 || e.responseText == '1') {
                         setValue(staticFile, nameInput.getAttribute('value'));
                     }
                 },
