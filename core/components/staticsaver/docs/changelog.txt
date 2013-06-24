@@ -1,5 +1,10 @@
 Changelog for StaticSaver.
 
+StaticSaver 1.1.2-pl
+==============
+- Added ability to change static file name on changing name of element (chunk, snippet...).
+- Category name converting to lowercase and space replacing on underscore symbol.
+
 StaticSaver 1.1.1-pl
 ==============
 - Some minor performance fixes.
