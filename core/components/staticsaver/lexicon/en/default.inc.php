@@ -20,6 +20,7 @@ $_lang['setting_staticsaver.static_tv_media_source'] = 'TV Media Source';
 $_lang['setting_staticsaver.static_default'] = 'Static by default';
 $_lang['setting_staticsaver.include_category'] = 'Include category folder';
 
+$_lang['setting_staticsaver.enable_rewrite_desc'] = 'If you change the name of the chunk, snippet, etc. will change the name of a static file. The old file is not deleted, it will be continue to be in the file system.';
 $_lang['setting_staticsaver.static_file_extension_desc'] = 'Set up an extension of static files. Set empty to use different extensions for each type of elements';
 $_lang['setting_staticsaver.static_chunk_file_extension_desc'] = 'Set up an extension of chunk static files.';
 $_lang['setting_staticsaver.static_template_file_extension_desc'] = 'Set up an extension of template static files.';

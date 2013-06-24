@@ -39,7 +39,7 @@ var StaticSaver = function(config) {
             Ext.Ajax.request({
                 url:  MODx.config['assets_url'] + 'components/staticsaver/connector.php',
                 success: function(e){
-                    if (MODx.config['staticsaver.enable_rewrite'] == 1 || e.responseText == '1') {
+                    if (MODx.config['staticsaver.enable_rewrite'] || e.responseText == '1') {
                         setValue(staticFile, nameInput.getAttribute('value'));
                     }
                 },
@@ -74,7 +74,7 @@ var StaticSaver = function(config) {
         nameInput.on('keyup', function() {
             setValue(staticFile, nameInput.getAttribute('value'));
         });
-        categoryInput.on('change', function(){
+        categoryInput.on('select', function(){
             setValue(staticFile, nameInput.getAttribute('value'));
         });
     });
