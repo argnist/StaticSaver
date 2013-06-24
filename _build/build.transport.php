@@ -15,7 +15,7 @@ set_time_limit(0);
 /* define package */
 define('PKG_NAME', 'StaticSaver');
 define('PKG_NAME_LOWER', strtolower(PKG_NAME));
-define('PKG_VERSION', '1.1.1');
+define('PKG_VERSION', '1.1.2');
 define('PKG_RELEASE', 'pl');
 
 /* define sources */
@@ -97,7 +97,7 @@ $attr = array(
             xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array(
                 'PluginEvents' => array(
                     xPDOTransport::PRESERVE_KEYS => true,
-                    xPDOTransport::UPDATE_OBJECT => false,
+                    xPDOTransport::UPDATE_OBJECT => true,
                     xPDOTransport::UNIQUE_KEY => array('pluginid', 'event'),
                 ),
             ),

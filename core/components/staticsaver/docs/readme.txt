@@ -1,7 +1,7 @@
 --------------------
 StaticSaver
 --------------------
-Version: 1.1.1-pl
+Version: 1.1.2-pl
 Author: Vitaly Kireev <kireevvit@gmail.com>
 --------------------
 
