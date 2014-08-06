@@ -1,12 +1,12 @@
 var StaticSaver = function(config) {
     Ext.onReady(function(){
-
+    	
         var nameInput = Ext.get(config.nameInput);
         var staticFile = Ext.getCmp(config.staticFile);
         var sourceInput = Ext.getCmp(config.sourceInput);
         var isStatic = Ext.getCmp(config.isStatic);
         var categoryInput = Ext.getCmp(config.categoryInput);
-
+        
         if (!(nameInput && staticFile && sourceInput)) {
             return;
         }
@@ -24,10 +24,10 @@ var StaticSaver = function(config) {
                 new_value = value + '.' + MODx.config[config.fileExt];
             }
 
-            if (MODx.config['staticsaver.include_category']) {
+            if (MODx.config['staticsaver.include_category'] == "1") {
                 var category = categoryInput.getRawValue();
-                if (category != categoryInput.getValue()) {
-                    new_value =  category.toLowerCase().replace(/ /g,"_") + '/' + new_value;
+                if (category != categoryInput.getValue() && category.toLowerCase() != "none" ) {
+                    new_value = category.toLowerCase().replace(/ /g,"_") + '/' + new_value;
                 }
             }
             placeholder.setValue(new_value);
@@ -39,8 +39,19 @@ var StaticSaver = function(config) {
             Ext.Ajax.request({
                 url:  MODx.config['assets_url'] + 'components/staticsaver/connector.php',
                 success: function(e){
-                    if (MODx.config['staticsaver.enable_rewrite'] || e.responseText == '1') {
-                        setValue(staticFile, nameInput.getAttribute('value'));
+                	var response = JSON.parse(e.responseText);
+                	var value = response.result;
+                    if (MODx.config['staticsaver.enable_rewrite'] || value == '1') {
+						setValue(staticFile, nameInput.getAttribute('value'));
+                    }
+					var category;
+                	var category_folder = "";
+                	if( catval != "" ) {
+                		category = response.category;
+                		category_folder = category.toLowerCase().replace(/ /g,"_")+"/";
+                	}
+                    if (MODx.config['staticsaver.include_category'] == "1") {
+                    	setValue(staticFile, category_folder+nameInput.getAttribute('value'));
                     }
                 },
                 params: {
@@ -48,12 +59,12 @@ var StaticSaver = function(config) {
                     type : config.type,
                     id: MODx.request.id,
                     source: sourceInput.getValue(),
+                    category: categoryInput.getValue(),
                     static_file: staticFile.getValue()
                 }
             });
         }
-
-
+        
         if (sourceInput.getValue() != config.source) {
             var sourceStore = sourceInput.getStore();
             var sources = [];
@@ -70,12 +81,60 @@ var StaticSaver = function(config) {
                 }
             });
         }
-
+        
+        var catval = categoryInput.getValue();
         nameInput.on('keyup', function() {
-            setValue(staticFile, nameInput.getAttribute('value'));
+        	Ext.Ajax.request({
+                url:  MODx.config['assets_url'] + 'components/staticsaver/connector.php',
+                success: function(e){
+                	var response = JSON.parse(e.responseText);
+                	var value = response.result;
+                	var category;
+                	var category_folder = "";
+                	if( catval != "" ) {
+                		category = response.category;
+                		category_folder = category.toLowerCase().replace(/ /g,"_")+"/";
+                	}
+                    if (MODx.config['staticsaver.include_category'] == "1") {
+                    	setValue(staticFile, category_folder+nameInput.getAttribute('value'));
+                    }
+                },
+                params: {
+                    action: 'check',
+                    type : config.type,
+                    id: MODx.request.id,
+                    source: sourceInput.getValue(),
+                    category: catval,
+                    static_file: staticFile.getValue()
+                }
+            });
         });
         categoryInput.on('select', function(){
-            setValue(staticFile, nameInput.getAttribute('value'));
+        	catval = categoryInput.getValue();
+            Ext.Ajax.request({
+                url:  MODx.config['assets_url'] + 'components/staticsaver/connector.php',
+                success: function(e){
+                	var response = JSON.parse(e.responseText);
+                	var value = response.result;
+                	var category;
+                	var category_folder = "";
+                	if( catval != "" ) {
+                		category = response.category;
+                		category_folder = category.toLowerCase().replace(/ /g,"_")+"/";
+                	}
+                    if (MODx.config['staticsaver.include_category'] == "1") {
+                    	setValue(staticFile, category_folder+nameInput.getAttribute('value'));
+                    }
+                },
+                params: {
+                    action: 'check',
+                    type : config.type,
+                    id: MODx.request.id,
+                    source: sourceInput.getValue(),
+                    category: catval,
+                    static_file: staticFile.getValue()
+                }
+            });
         });
     });
 };
