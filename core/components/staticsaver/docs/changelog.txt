@@ -1,5 +1,9 @@
 Changelog for StaticSaver.
 
+StaticSaver 1.1.3-pl
+==============
+-  Fixed a bug with category handling
+
 StaticSaver 1.1.2-pl
 ==============
 - Added ability to change static file name on changing name of element (chunk, snippet...).
