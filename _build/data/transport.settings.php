@@ -164,4 +164,13 @@ $settings['filename_sanitize_replace']->fromArray(array(
     'area' => 'file',
 ),'',true,true);
 
+$settings['preserve_case']= $modx->newObject('modSystemSetting');
+$settings['preserve_case']->fromArray(array(
+    'key' => 'staticsaver.preserve_case',
+    'value' => '0',
+    'xtype' => 'combo-boolean',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
+
 return $settings;

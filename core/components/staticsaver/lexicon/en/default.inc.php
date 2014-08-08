@@ -22,6 +22,7 @@ $_lang['setting_staticsaver.include_category'] = 'Include category folder';
 $_lang['setting_staticsaver.filename_sanitize'] = 'Sanitize static file names';
 $_lang['setting_staticsaver.filename_sanitize_search'] = 'Search pattern';
 $_lang['setting_staticsaver.filename_sanitize_replace'] = 'Replace string';
+$_lang['setting_staticsaver.preserve_case'] = 'Preserve case when sanitizing?';
 
 $_lang['setting_staticsaver.enable_rewrite_desc'] = 'If you change the name of the chunk, snippet, etc. will change the name of a static file. The old file is not deleted, it will be continue to be in the file system.';
 $_lang['setting_staticsaver.static_file_extension_desc'] = 'Set up an extension of static files. Set empty to use different extensions for each type of elements';
@@ -40,3 +41,4 @@ $_lang['setting_staticsaver.include_category_desc'] = 'If "Yes" file is placed t
 $_lang['setting_staticsaver.filename_sanitize_desc'] = 'Sanitize static file names using supplied search pattern. If selected, file names will be rewritten. Old files will not be deleted.';
 $_lang['setting_staticsaver.filename_sanitize_search_desc'] = 'The filename sanitization search pattern.';
 $_lang['setting_staticsaver.filename_sanitize_replace_desc'] = 'The filename sanitization replace string.';
+$_lang['setting_staticsaver.preserve_case_desc'] = 'If "Yes", static file names will be changed to lower case. If "Include category folder" is "Yes", it will also be processed.';
