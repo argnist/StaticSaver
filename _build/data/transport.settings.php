@@ -137,4 +137,31 @@ $settings['include_category']->fromArray(array(
     'area' => 'file',
 ),'',true,true);
 
+$settings['filename_sanitize']= $modx->newObject('modSystemSetting');
+$settings['filename_sanitize']->fromArray(array(
+    'key' => 'staticsaver.filename_sanitize',
+    'value' => '0',
+    'xtype' => 'combo-boolean',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
+
+$settings['filename_sanitize_search']= $modx->newObject('modSystemSetting');
+$settings['filename_sanitize_search']->fromArray(array(
+    'key' => 'staticsaver.filename_sanitize_search',
+    'value' => '[^\w\.]',
+    'xtype' => 'textfield',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
+
+$settings['filename_sanitize_replace']= $modx->newObject('modSystemSetting');
+$settings['filename_sanitize_replace']->fromArray(array(
+    'key' => 'staticsaver.filename_sanitize_replace',
+    'value' => '_',
+    'xtype' => 'textfield',
+    'namespace' => 'staticsaver',
+    'area' => 'file',
+),'',true,true);
+
 return $settings;
