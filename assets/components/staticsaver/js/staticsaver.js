@@ -1,11 +1,17 @@
 var StaticSaver = function(config) {
     Ext.onReady(function(){
-    	
+        
         var nameInput = Ext.get(config.nameInput);
         var staticFile = Ext.getCmp(config.staticFile);
         var sourceInput = Ext.getCmp(config.sourceInput);
         var isStatic = Ext.getCmp(config.isStatic);
         var categoryInput = Ext.getCmp(config.categoryInput);
+        var filename_sanitize = MODx.config['staticsaver.filename_sanitize'] || "0";
+        var filename_sanitize_search = MODx.config['staticsaver.filename_sanitize_search'] || "[^\w\.]";
+        filename_sanitize_search = new RegExp(filename_sanitize_search, "gi");
+        var filename_sanitize_replace = MODx.config['staticsaver.filename_sanitize_replace'] || "_";
+        var filename_clean_search = new RegExp(filename_sanitize_replace+"+", "gi");
+        var lastUnderscore = new RegExp('_$','i');
         
         if (!(nameInput && staticFile && sourceInput)) {
             return;
@@ -33,17 +39,42 @@ var StaticSaver = function(config) {
                 success: function(e){
                     var response = JSON.parse(e.responseText);
                     var value = response.result;
-                    if (MODx.config['staticsaver.enable_rewrite'] || value == '1') {
-                        setValue(staticFile, nameInput.getAttribute('value'));
-                    }
+                    var name = nameInput.getAttribute('value').toLowerCase();
+                    var name_orig = name;
                     var category;
                     var category_folder = "";
+                    var rewriteFile = false;
+                    var rewriteCat = false;
+                    
+                    if( filename_sanitize == "1" ) {
+                        name = name.replace(filename_sanitize_search,filename_sanitize_replace).replace(filename_clean_search,filename_sanitize_replace);
+                        name = name.replace(/^_/,'').replace(/_$/,'');
+                        if( name != name_orig ) {
+                        	rewriteFile = true;
+                        }
+                    }
+                    if (MODx.config['staticsaver.enable_rewrite'] == "1" || value == "1") {
+                    	rewriteFile = true;
+                    }
+                    if (rewriteFile) {
+                    	setValue(staticFile, name);
+                    }
+                    
                     if( catval != "" ) {
                         category = response.category;
-                        category_folder = category.toLowerCase().replace(/ /g,"_")+"/";
+                        category_folder = category.toLowerCase();
+                        if( filename_sanitize == "1" ) {
+                            category_folder = category_folder.replace(filename_sanitize_search,filename_sanitize_replace).replace(filename_clean_search,filename_sanitize_replace);
+                        	rewriteCat = true;
+                        }
+                        category_folder += "/";
                     }
                     if (MODx.config['staticsaver.include_category'] == "1") {
-                        setValue(staticFile, category_folder+nameInput.getAttribute('value'));
+                    	rewriteCat = true;
+                    }
+                    
+                    if (rewriteCat) { 
+                    	setValue(staticFile, category_folder+name);
                     }
                 },
                 params: {
@@ -58,10 +89,14 @@ var StaticSaver = function(config) {
         }
 
         if (staticFile.getValue() == '') {
-            setValue(staticFile, nameInput.getAttribute('value'));
-        } else {
-            getRequest();
+            var name = nameInput.getAttribute('value').toLowerCase();
+            if( filename_sanitize == "1" ) {
+                name = name.replace(filename_sanitize_search,filename_sanitize_replace).replace(filename_clean_search,filename_sanitize_replace);
+            }
+            setValue(staticFile, name);
         }
+        
+        getRequest();
         
         if (sourceInput.getValue() != config.source) {
             var sourceStore = sourceInput.getStore();
